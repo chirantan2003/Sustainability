@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>sustainopedia</title>
+  <style>
+
+    /* Full-width input fields */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+
+/* Center the image and position the close button */
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+}
+
+img.avatar {
+    width: 40%;
+    border-radius: 50%;
+}
+
+.container {
+    padding: 16px;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: red;
+    cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+}
+    
+@keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .cancelbtn {
+       width: 100%;
+    }
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #A9A9A9;
+}
+
+li {
+    float: left;
+}
+
+li a, .dropbtn {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+    background-color:  #4CAF50;color: white;
+}
+
+li.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1;color: black}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+body {
+    font-family: "Lato", sans-serif;
+    transition: background-color .5s;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 28px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    font-size: 36px;
+    margin-left: 0px;
+}
+
+#main {
+    transition: margin-right .5s;
+    padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-topp: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+body{background-color: #f1f1f1}
+
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f9ef00;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 20px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+* {box-sizing:border-box}
+body {font-family: Verdana,sans-serif;}
+.mySlides {display:none}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 25px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  height: 13px;
+  width: 13px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .text {font-size: 11px}
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+}
+
+</style>
+</head>
+<body>
+
+<div id="main">
+
+<div style="height: 50px;width: 100%;border: solid black 0px;">
+
+<div class="slideshow-container">
+
+<div class="mySlides fade">
+  <img src="sus.jpg" style="width:130%; height: 550px; margin-left: -15%">
+  <div class="text">Caption Text</div>
+</div>
+
+<div class="mySlides fade">
+  
+  <img src="2.jpg" style="width:130%; height: 550px; margin-left: -15%">
+  <div class="text">Caption Text</div>
+</div>
+
+<div class="mySlides fade">
+  
+  <img src="1.jpg" style="width:130%; height: 550px; margin-left: -15%">
+  <div class="text">Caption Text</div>
+</div>
+
+</div>
+<br>
+
+<div style="text-align:center;margin-top: -50px">
+  <span class="dot" style="margin-top: -100px"></span> 
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+</div>
+
+<script>
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("dot");
+    for (i = 0; i < slides.length; i++) {
+       slides[i].style.display = "none";  
+    }
+    slideIndex++;
+    if (slideIndex> slides.length) {slideIndex = 1}    
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";  
+    dots[slideIndex-1].className += " active";
+    setTimeout(showSlides, 2000); // Change image every 2 seconds
+}
+</script>
+
+
+
+
+    
+
+     <div  style="height: 50px;width: 100%;margin-top: 25px">
+      <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a style="margin-left: -10px" href="#">About Us</a>
+  <hr width="90%">
+  <a style="margin-left: -10px" href="#">Our Mission</a>
+  <hr width="90%">
+  <a style="margin-left: -10px" href="#">Contact Us</a>
+  
+  </div>
+
+
+  <span style="font-size:30px;cursor:pointer;margin-left: 1270px" onclick="openNav()">&#9776;</span>
+
+
+
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginRight = "250px";
+    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginRight= "0";
+    document.body.style.backgroundColor = "white";
+}
+</script>
+     
+</div>
+<ul style="margin-top: -55px;width: 100%" >
+  <li><a href="#home">Home</a></li>
+  <li><a href="#news">Sustainablity</a></li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Types of Sustainablity</a>
+    <div class="dropdown-content">
+      <a href="#">Water Sustainablity</a>
+      <a href="#">Exhaustible Resource Sustainablity</a>
+      <a href="#">Nature Sustainablity</a>
+    </div>
+  </li>
+  <li><button onclick="document.getElementById('id01').style.display='block' " style="width:auto; margin-top: 2.5px;background-color: #A9A9A9;font-size: 18px;color: black;height: 40px;margin-top: -1px">Login</button></li>
+
+<div id="id01" class="modal">
+  
+  <form class="modal-content animate" action="/action_page.php">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="avatar.png">
+    </div>
+
+    <div class="container">
+            <form name="login">
+
+      Username<input type="text" name="userid"/>
+
+      Password<input type="password" name="pswrd"/>
+        
+ <input type="button" onclick="check(this.form)" value="Login"/>
+       <input type="reset" value="Cancel"/>
+        </form>
+        <script language="javascript">
+            function check(form) { /*function to check userid & password*/
+                /*the following code checkes whether the entered userid and password are matching*/
+                if(form.userid.value == "harshit" && form.pswrd.value == "chirantan") {
+                    window.open('target.html')/*opens the target page while Id & password matches*/
+                }
+                else {
+                    alert("Error Password or Username")/*displays error message*/
+                }
+            }
+        </script>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+    </div>
+  </form>
+</div>
+
+  
+</ul>
+  </div>   
+
+     <div style="height: 3000px;width: 100%;margin-top: 600px;">
+      <div style="height: 3000px;width: 95%;background-color: #ddd;margin-left: 2.5%;margin-right: 2.5%">
+        <div style="height: 650px;width: 100%;background-image: url(waterfall.gif);background-size: 100% 100%;margin-top: 400px">
+          </div>
+     <p style="font-size: 86px;margin-left:150px;margin-top: -580px;color: #228b22">
+    <b style="margin-left: 330px">WATER</b><br><b style="margin-left: 200px">Sustainablity</b></p>
+
+
+    <p style="font-size: 24px;color: white;margin-top: -31px;margin-left: 350px;margin-right: 30px"><b>Water Sustainablity is now days a major issue in the world.Although it<br> is said that water will never get exhausted due to the water cycle but seeing our rapid use of the water and it's wastage will surely lead to<br> water crisis.</b></p>
+
+       <li><button onclick="document.getElementById('id01').style.display='block'" button class="button" style="margin-left: 550px;margin-top: 30px;vertical-align:middle;background-color: #228b22"><span>know more</span></button></li>
+      <div id="id01" class="modal">
+  
+  <form class="modal-content animate" action="/action_page.php">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+            <form name="login">
+
+      Username<input type="text" name="userid"/>
+
+      Password<input type="password" name="pswrd"/>
+        
+ <input type="button" onclick="check(this.form)" value="Login"/>
+       <input type="reset" value="Cancel"/>
+        </form>
+        <script language="javascript">
+            function check(form) { /*function to check userid & password*/
+                /*the following code checkes whether the entered userid and password are matching*/
+                if(form.userid.value == "harshit" && form.pswrd.value == "chirantan") {
+                    window.open('target.html')/*opens the target page while Id & password matches*/
+                }
+                else {
+                    alert("Error Password or Username")/*displays error message*/
+                }
+            }
+        </script>
+    </div>
+    </div>
+
+      
+          
+          <div style="height: 650px;width: 100%;background-image: url(coolcoal.jpg);background-size: 100% 100%;margin-top: 143px;margin-left: 0px"></div>
+           <p style="font-size: 86px;margin-left: 100px;margin-top: -580px;color: white">
+    <b>Exhaustible Resource </b><b style="margin-left: 200px">Sustainablity</b></p>
+
+      <p style="font-size: 28px;color: white;margin-top: -60px;margin-left: 50px;margin-right: 30px;"><b>As the name suggessts these resources are exhaustible. These resources have limited stocks and take millions of years to replenish and form back in resources. These are made naturally and thus cannot be made in laboratories....</b></p>
+
+
+
+         <li><button onclick="document.getElementById('id01').style.display='block'" button class="button" style="margin-left: 550px;margin-top: 95px;vertical-align:middle;background-color: white; color: black"><span>know more</span></button></li>
+      <div id="id01" class="modal">
+  
+  <form class="modal-content animate" action="/action_page.php">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="avatar.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+            <form name="login">
+
+      Username<input type="text" name="userid"/>
+
+      Password<input type="password" name="pswrd"/>
+        
+ <input type="button" onclick="check(this.form)" value="Login"/>
+       <input type="reset" value="Cancel"/>
+        </form>
+        <script language="javascript">
+            function check(form) { /*function to check userid & password*/
+                /*the following code checkes whether the entered userid and password are matching*/
+                if(form.userid.value == "harshit" && form.pswrd.value == "chirantan") {
+                    window.open('target.html')/*opens the target page while Id & password matches*/
+                }
+                else {
+                    alert("Error Password or Username")/*displays error message*/
+                }
+            }
+        </script>
+    </div>
+    </div>
+
+
+        <div style="height: 650px;width: 100%;background-image: url(gif.gif);background-size: 100% 100%;margin-top: 210px;margin-left: 0px">
+         
+        </div>
+        <p style="font-size: 96px;margin-left: 55px;margin-top: -480px;color: white">
+    <b>Nature Sustainablity</b></p>
+      <li><button onclick="document.getElementById('id01').style.display='block'" button class="button" style="margin-left: 550px;margin-top: 150px;vertical-align:middle;background-color: #228b22"><span>know more</span></button></li>
+      <div id="id01" class="modal">
+  
+  <form class="modal-content animate" action="/action_page.php">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+            <form name="login">
+
+      Username<input type="text" name="userid"/>
+
+      Password<input type="password" name="pswrd"/>
+        
+ <input type="button" onclick="check(this.form)" value="Login"/>
+       <input type="reset" value="Cancel"/>
+        </form>
+        <script language="javascript">
+            function check(form) { /*function to check userid & password*/
+                /*the following code checkes whether the entered userid and password are matching*/
+                if(form.userid.value == "harshit" && form.pswrd.value == "chirantan") {
+                    window.open('target.html')/*opens the target page while Id & password matches*/
+                }
+                else {
+                    alert("Error Password or Username")/*displays error message*/
+                }
+            }
+        </script>
+    </div>
+    </div>
+
+           <div style="height: 650px;width: 100%;background-image: url(gif.gif);background-size: 100% 100%;margin-top: 360px;margin-left: 0px">
+         
+        </div>
+        <p style="font-size: 96px;margin-left: 00px;margin-top: -380px;color: white">
+    <b>Natural Resource Conservation</b></p>
+       <br><a href="#"><div style="margin-left: -50px;margin-top: 80px"><button class="button" style="vertical-align:middle;background-color: #228b22"><span>Know More </span></button>
+          </div></a>
+
+
+          
+
+      </div>
+     </div>
+</div>     
+</body>
+</html>
